@@ -1,7 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import io
+from selenium.webdriver.chrome.options import Options
+import smtplib, ssl, getpass, io
+
+chrome_options = Options()
+chrome_options.add_argument("--headless")
 
 class car:
 
@@ -14,7 +18,7 @@ class car:
         return desc_str
 
 
-browser = webdriver.Chrome()
+browser = webdriver.Chrome(options=chrome_options)
 
 # Navigates to craigslist
 browser.get('http://craigslist.org')
@@ -49,4 +53,5 @@ for car in carListings:
 
 f.close()
 
-#browser.quit()
+browser.quit()
+
